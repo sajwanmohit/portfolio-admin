@@ -7,6 +7,11 @@ const api = axios.create({
   },
 });
 
+export const login = async (username: string, password: string) => {
+  const res = await api.post("/auth/login", { username, password });
+
+  localStorage.setItem("admin_token", res.data.token);
+};
 
 // REQUEST INTERCEPTOR
 api.interceptors.request.use(

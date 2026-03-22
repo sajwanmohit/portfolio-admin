@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import api from "../../api/axios";
 import type { Project } from "../../types/project";
+import { deleteProjects, getProjects, updateProjects } from "../../api/projects";
 
 export default function ProjectTable() {
-  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingId, setEditingId] = useState<number | null>(null);
   const [editData, setEditData] = useState<Partial<Project>>({});
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
@@ -18,17 +18,15 @@ export default function ProjectTable() {
   };
   const updateProject = async () => {
     const payload = removeEmptyFields(editData);
-
-    await api.patch(`/projects/${editingId}`, payload);
-
+    await updateProjects(editingId!, payload);
     setEditingId(null);
 
     fetchProjects();
   };
   const fetchProjects = async () => {
     try {
-      const res = await api.get("/projects");
-      setProjects(res.data);
+      const data = await getProjects();
+      setProjects(data);
     } catch (err) {
       console.error("Failed to load projects", err);
     } finally {
@@ -36,9 +34,9 @@ export default function ProjectTable() {
     }
   };
 
-  const deleteProject = async (id: string) => {
+  const deleteProject = async (id: number) => {
     try {
-      await api.delete(`/projects/${id}`);
+      await deleteProjects(id);
       fetchProjects();
     } catch (err) {
       console.error("Delete failed", err);
@@ -121,14 +119,6 @@ export default function ProjectTable() {
                   <button onClick={() => deleteProject(p.id!)}>Delete</button>
                 </>
               )}
-            </td>
-            <td className="p-2 border">
-              <button
-                onClick={() => deleteProject(p.id!)}
-                className="text-red-500"
-              >
-                Delete
-              </button>
             </td>
           </tr>
         ))}
