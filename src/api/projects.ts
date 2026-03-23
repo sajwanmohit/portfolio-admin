@@ -1,9 +1,11 @@
 import api from "./axios";
 import type { Project } from "../types/project";
 
-export const getProjects = async () => {
-  const res = await api.get("/public/projects");
-  return res.data.content;
+export const getProjects = async (page=0,size=5, search = "") => {
+  const res = await api.get("/public/projects", {
+    params: { page, size, search },
+  });
+  return res.data;
 };
 
 export const createProject = async (data: Project) => {
