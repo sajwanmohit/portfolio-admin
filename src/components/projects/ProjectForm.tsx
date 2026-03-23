@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
-import api from "../../api/axios";
 import type { Project } from "../../types/project";
+import { createProject } from "../../api/projects";
 
 export default function ProjectForm() {
   const { register, handleSubmit, reset } = useForm<Project>();
 
   const onSubmit = async (data: Project) => {
     try {
-      await api.post("/projects", data);
+      await createProject(data);
       reset();
     } catch (error) {
       console.error("Failed to save project", error);
@@ -40,6 +40,12 @@ export default function ProjectForm() {
       <input
         placeholder="Live URL"
         {...register("liveUrl")}
+        className="border p-2"
+      />
+
+      <input
+        placeholder="Image URL"
+        {...register("imageUrl")}
         className="border p-2"
       />
 
