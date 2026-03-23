@@ -11,6 +11,8 @@ export const login = async (username: string, password: string) => {
   localStorage.setItem("admin_token", res.data.token);
 };
 
-export const logout = () => {
+export const logout = (navigate?: (path: string) => void) => {
   localStorage.removeItem(TOKEN_KEY);
+  delete api.defaults.headers.common["Authorization"];
+  if (navigate) navigate("/login");
 };

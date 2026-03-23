@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from "./auth";
+import { getToken, logout } from "./auth";
 
 const API_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -32,10 +32,9 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.error("API Error:", error.response?.data || error.message);
 
     if (error.response?.status === 401) {
-      localStorage.removeItem("admin_token");
+      logout();
       window.location.href = "/login";
     }
 

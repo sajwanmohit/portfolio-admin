@@ -6,7 +6,7 @@ import {
   getProjects,
   updateProjects,
 } from "../../api/projects";
-import ConfirmModal from "../modals/ConfirmModal";
+import ConfirmModalButton from "../modals/ConfirmModalButton";
 
 export default function ProjectTable() {
   const [editingId, setEditingId] = useState<number | null>(null);
@@ -301,7 +301,7 @@ export default function ProjectTable() {
           Next
         </button>
       </div>
-      <ConfirmModal
+      <ConfirmModalButton
         isOpen={deleteId !== null}
         onClose={() => setDeleteId(null)}
         onConfirm={async () => {

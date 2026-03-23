@@ -5,7 +5,7 @@ type Props = {
   message?: string;
 };
 
-export default function ConfirmModal({
+export default function ConfirmModalButton({
   isOpen,
   onClose,
   onConfirm,
