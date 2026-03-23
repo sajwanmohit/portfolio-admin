@@ -13,7 +13,7 @@ export const createProject = async (data: Project) => {
 };
 
 export const updateProjects = async (id: number, data: Partial<Project>) => {
-  return api.patch(`/admin/projects/${id}`, data);
+  return api.put(`/admin/projects/${id}`, data);
 };
 
 export const deleteProjects = async (id: number) => {
