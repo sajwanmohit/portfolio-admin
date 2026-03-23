@@ -5,9 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function useAutoLogout() {
   const navigate = useNavigate();
-
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("admin_token");
     if (!token) return;
 
     const expiry = getTokenExpiry(token);
