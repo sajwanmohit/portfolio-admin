@@ -47,27 +47,32 @@ export default function SkillForm({ onSuccess }: { onSuccess: () => void }) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 mb-6">
-
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-3 mb-6"
+    >
       <input
         placeholder="Skill name"
         {...register("name", { required: true })}
         className="border p-2"
       />
 
-      <input
-        placeholder="Level (optional)"
-        {...register("level")}
-        className="border p-2"
-      />
+      <select {...register("level")} className="border p-2">
+        <option value="">Select level</option>
+        <option value="BEGINNER">Beginner</option>
+        <option value="INTERMEDIATE">Intermediate</option>
+        <option value="ADVANCED">Advanced</option>
+      </select>
 
       <select
         {...register("categoryId", { required: true })}
         className="border p-2"
       >
         <option value="">Select category</option>
-        {categories.map(c => (
-          <option key={c.id} value={c.id}>{c.name}</option>
+        {categories.map((c) => (
+          <option key={c.id} value={c.id}>
+            {c.name}
+          </option>
         ))}
       </select>
 
@@ -88,9 +93,7 @@ export default function SkillForm({ onSuccess }: { onSuccess: () => void }) {
         </button>
       </div>
 
-      <button className="bg-blue-500 text-white p-2">
-        Save Skill
-      </button>
+      <button className="bg-blue-500 text-white p-2">Save Skill</button>
     </form>
   );
 }

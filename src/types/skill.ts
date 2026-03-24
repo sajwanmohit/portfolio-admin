@@ -1,7 +1,9 @@
+type SkillLevel = "BEGINNER" | "INTERMEDIATE" | "ADVANCED";
+
 export type Skill = {
   id?: number;
   name: string;
-  level?: string;
+  level?: SkillLevel;
   categoryId: number;
   categoryName?: string;
 };
