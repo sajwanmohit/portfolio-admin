@@ -4,6 +4,7 @@ import AdminLayout from "../components/layout/AdminLayout";
 import Dashboard from "../pages/Dashboard";
 import Projects from "../pages/Projects";
 import Login from "../pages/Login";
+import Skills from "../pages/Skills";
 import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: "projects",
         element: <Projects />,
+      },
+      {
+        path: "skills",
+        element: <Skills />,
       },
     ],
   },
