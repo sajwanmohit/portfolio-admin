@@ -18,6 +18,10 @@ function Sidebar() {
         <NavLink to="/admin/projects" className={linkClass}>
           Projects
         </NavLink>
+
+        <NavLink to="/admin/skills" className={linkClass}>
+          Skills
+        </NavLink>
       </nav>
     </aside>
   );
