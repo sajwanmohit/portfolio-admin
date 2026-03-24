@@ -1,16 +1,20 @@
 import { useForm } from "react-hook-form";
 import type { Project } from "../../types/project";
 import { createProject } from "../../api/projects";
+import { apiToast } from "../../utils/apiToast";
 
 export default function ProjectForm() {
   const { register, handleSubmit, reset } = useForm<Project>();
 
   const onSubmit = async (data: Project) => {
-    try {
-      await createProject(data);
+
+    const res = await apiToast(createProject(data),{
+      loading: "Saving project...",
+      success: "Project saved successfully!",
+      error: "Failed to save project."
+    });
+    if(res) {
       reset();
-    } catch (error) {
-      console.error("Failed to save project", error);
     }
   };
 

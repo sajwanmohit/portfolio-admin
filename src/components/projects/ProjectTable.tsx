@@ -6,7 +6,8 @@ import {
   getProjects,
   updateProjects,
 } from "../../api/projects";
-import ConfirmModal from "../modals/ConfirmModal";
+import ConfirmModalButton from "../modals/ConfirmModalButton";
+import { apiToast } from "../../utils/apiToast";
 
 export default function ProjectTable() {
   const [editingId, setEditingId] = useState<number | null>(null);
@@ -29,14 +30,15 @@ export default function ProjectTable() {
     setEditData(projects);
   };
   const updateProject = async () => {
-    try {
-      const payload = removeEmptyFields(editData);
-      await updateProjects(editingId!, payload);
-      toast.success("Project updated");
+    const payload = removeEmptyFields(editData);
+    const res = await apiToast(updateProjects(editingId!, payload), {
+      loading: "Updating project...",
+      success: "Project updated successfully!",  
+      error: "Failed to update project."
+    });
+    if(res) {
       setEditingId(null);
       fetchProjects();
-    } catch {
-      toast.error("Update failed");
     }
   };
   const fetchProjects = async () => {
@@ -52,12 +54,14 @@ export default function ProjectTable() {
   };
 
   const deleteProject = async (id: number) => {
-    try {
-      await deleteProjects(id);
-      toast.success("Deleted successfully");
+    const res = await apiToast(deleteProjects(id), {
+      loading: "Deleting project...",
+      success: "Project deleted successfully!",
+      error: "Failed to delete project."
+    });
+    if(res) {
+      setDeleteId(null);
       fetchProjects();
-    } catch {
-      toast.error("Delete failed");
     }
   };
 
@@ -301,7 +305,7 @@ export default function ProjectTable() {
           Next
         </button>
       </div>
-      <ConfirmModal
+      <ConfirmModalButton
         isOpen={deleteId !== null}
         onClose={() => setDeleteId(null)}
         onConfirm={async () => {
