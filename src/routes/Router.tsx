@@ -6,6 +6,7 @@ import Projects from "../pages/Projects";
 import Login from "../pages/Login";
 import Skills from "../pages/Skills";
 import ProtectedRoute from "./ProtectedRoute";
+import ContactView from "../pages/ContactView";
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: "skills",
         element: <Skills />,
+      },
+      {
+        path: "contacts",
+        element: <ContactView />,
       },
     ],
   },
