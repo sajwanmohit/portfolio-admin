@@ -7,6 +7,7 @@ import Login from "../pages/Login";
 import Skills from "../pages/Skills";
 import ProtectedRoute from "./ProtectedRoute";
 import ContactView from "../pages/ContactView";
+import Profile from "../pages/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Navigate to="/admin" replace />,
+    element: <Navigate to="/admin/profile" replace />,
   },
   {
     path: "/admin",
@@ -27,7 +28,11 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Dashboard />,
+        element: <Navigate to="profile" replace />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
       {
         path: "projects",
