@@ -11,8 +11,8 @@ function Sidebar() {
       <h2 className="text-xl font-bold mb-6">Portfolio Admin</h2>
 
       <nav className="space-y-2">
-        <NavLink to="/admin" end className={linkClass}>
-          Dashboard
+        <NavLink to="/admin/profile" className={linkClass}>
+          Profile
         </NavLink>
 
         <NavLink to="/admin/projects" className={linkClass}>
