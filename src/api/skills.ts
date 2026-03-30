@@ -32,3 +32,6 @@ export const createCategory = async (
   const res = await api.post("/admin/skill-categories", data);
   return res.data;
 };
+
+export const deleteCategory = (id: number) =>
+  api.delete(`/api/admin/skill-categories/${id}`);

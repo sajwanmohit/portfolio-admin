@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { getSkills, deleteSkill } from "../../api/skills";
 import { apiToast } from "../../utils/apiToast";
 import type { Skill } from "../../types/skill";
+import ConfirmModalButton from "../modals/ConfirmModalButton";
 
 export default function SkillTable({ refresh }: { refresh: number }) {
   const [skills, setSkills] = useState<Skill[]>([]);
+  const [deleteId, setDeleteId] = useState<number | null>(null);
   const [page, setPage] = useState(0);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -98,7 +100,7 @@ export default function SkillTable({ refresh }: { refresh: number }) {
                     {formatLevel(s.level)}
                   </span>
                   <button
-                    onClick={() => handleDelete(s.id!)}
+                    onClick={() => setDeleteId(s.id!)}
                     className="text-red-500 text-xs"
                   >
                     ✕
@@ -109,6 +111,14 @@ export default function SkillTable({ refresh }: { refresh: number }) {
           </div>
         ))}
 
+<ConfirmModalButton
+  isOpen={deleteId !== null}
+  onClose={() => setDeleteId(null)}
+  onConfirm={async () => {
+    await handleDelete(deleteId!);
+    setDeleteId(null);
+  }}
+/>
       {/* Pagination */}
       {!loading && skills.length > 0 && (
         <div className="flex justify-between mt-4">
