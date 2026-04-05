@@ -33,10 +33,10 @@ export default function ProjectTable() {
     const payload = removeEmptyFields(editData);
     const res = await apiToast(updateProjects(editingId!, payload), {
       loading: "Updating project...",
-      success: "Project updated successfully!",  
-      error: "Failed to update project."
+      success: "Project updated successfully!",
+      error: "Failed to update project.",
     });
-    if(res) {
+    if (res) {
       setEditingId(null);
       fetchProjects();
     }
@@ -57,9 +57,9 @@ export default function ProjectTable() {
     const res = await apiToast(deleteProjects(id), {
       loading: "Deleting project...",
       success: "Project deleted successfully!",
-      error: "Failed to delete project."
+      error: "Failed to delete project.",
     });
-    if(res) {
+    if (res) {
       setDeleteId(null);
       fetchProjects();
     }
@@ -122,6 +122,8 @@ export default function ProjectTable() {
               <th className="p-3 text-left">Title</th>
               <th className="p-3 text-left">Description</th>
               <th className="p-3 text-left">Tech Stack</th>
+              <th className="p-3 text-left">Selected</th>
+
               <th className="p-3 text-left">Actions</th>
             </tr>
           </thead>
@@ -174,6 +176,18 @@ export default function ProjectTable() {
                   )}
                 </td>
 
+                <td className="p-3">
+                  <input
+                    type="checkbox"
+                    checked={p.isSelected || false}
+                    onChange={async () => {
+                      await updateProjects(p.id!, {
+                        isSelected: !p.isSelected,
+                      });
+                      fetchProjects();
+                    }}
+                  />
+                </td>
                 <td className="p-3 space-x-2">
                   {editingId === p.id ? (
                     <>
