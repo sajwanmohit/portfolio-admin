@@ -7,6 +7,8 @@ import Skills from "../pages/Skills";
 import ProtectedRoute from "./ProtectedRoute";
 import ContactView from "../pages/ContactView";
 import Profile from "../pages/Profile";
+import ProjectImport from "../pages/projects/ProjectImport";
+import ProjectList from "../pages/projects/ProjectList";
 
 export const router = createBrowserRouter([
   {
@@ -34,9 +36,19 @@ export const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: "projects",
-        element: <Projects />,
+    path: "projects",
+    element: <Projects />,
+    children: [
+      {
+        index: true,
+        element: <ProjectList />,
       },
+      {
+        path: "import",
+        element: <ProjectImport />,
+      },
+    ],
+  },
       {
         path: "skills",
         element: <Skills />,
