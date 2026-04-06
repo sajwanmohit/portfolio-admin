@@ -5,8 +5,6 @@ import type { Project } from "../../types/project";
 import GithubRepoSelector from "../../components/GithubRepoSelector";
 
 export default function ProjectImport({ onSuccess }: any) {
-  const [addingUrls, setAddingUrls] = useState<Set<string>>(new Set());
-
   const [projects, setProjects] = useState<Project[]>([]);
 
   const fetchProjects = async () => {
@@ -18,10 +16,6 @@ export default function ProjectImport({ onSuccess }: any) {
     fetchProjects();
   }, []);
   const handleAdd = async (project: Project) => {
-    const url = project.githubUrl;
-    //mark as adding to disable button
-    setAddingUrls((prev) => new Set(prev).add(url));
-
     const res = await apiToast(createProject(project), {
       loading: "Adding project...",
       success: "Project added",
@@ -33,12 +27,6 @@ export default function ProjectImport({ onSuccess }: any) {
       setProjects((prev) => [...prev, project]);
       onSuccess(); // 🔥 triggers table refresh
     }
-    // remove from adding after API completes
-    setAddingUrls((prev) => {
-      const newSet = new Set(prev);
-      newSet.delete(url);
-      return newSet;
-    });
     return res;
   };
 

@@ -1,13 +1,8 @@
 import { useState } from "react";
 import ProjectTable from "../../components/projects/ProjectTable";
-import ProjectImport from "./ProjectImport";
 
 export default function ProjectList() {
-  const [reloadKey, setReloadKey] = useState(0);
-
-  const handleRefresh = () => {
-    setReloadKey((prev) => prev + 1);
-  };
+  const [reloadKey] = useState(0);
 
   return (
     <div>

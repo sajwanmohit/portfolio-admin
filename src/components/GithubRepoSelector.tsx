@@ -6,7 +6,7 @@ export default function GithubRepoSelector({
   existingProjects,
 }: any) {
   const repos = useGithubRepos("sajwanmohit");
-  const [addingUrls, setAddingUrls] = useState<Set<string>>(new Set());
+  const [addingUrls] = useState<Set<string>>(new Set());
 
   const isAlreadyAdded = (repoUrl: string) => {
     return existingProjects?.some((p: any) => p.githubUrl === repoUrl);
