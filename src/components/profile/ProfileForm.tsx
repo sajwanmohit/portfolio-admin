@@ -12,15 +12,6 @@ export default function ProfileForm() {
     ownerEmailAddress: "",
   });
 
-  const initialForm = {
-    name: "",
-    designation: "",
-    about: "",
-    ownerGithubProfileURL: "",
-    ownerLinkedinProfileURL: "",
-    ownerEmailAddress: "",
-  };
-
   const [loading, setLoading] = useState(true);
 
   const fetchProfile = async () => {
@@ -43,16 +34,11 @@ export default function ProfileForm() {
   };
 
   const handleSubmit = async () => {
-    const res = await apiToast(saveProfile(form), {
+    await apiToast(saveProfile(form), {
       loading: "Saving profile...",
       success: "Profile saved",
       error: "Failed",
     });
-
-    // Reset form only if save succeeded
-    if (res) {
-      setForm(initialForm);
-    }
   };
 
   if (loading) return <p>Loading profile...</p>;
@@ -61,48 +47,15 @@ export default function ProfileForm() {
     <div className="bg-white p-6 rounded-xl shadow space-y-4">
       <h2 className="text-lg font-semibold">Profile</h2>
 
-      <input
-        name="name"
-        value={form.name}
-        onChange={handleChange}
-        placeholder="Name"
-      />
-      <input
-        name="designation"
-        value={form.designation}
-        onChange={handleChange}
-        placeholder="Designation"
-      />
-      <textarea
-        name="about"
-        value={form.about}
-        onChange={handleChange}
-        placeholder="About"
-      />
+      <input name="name" value={form.name} onChange={handleChange} placeholder="Name" />
+      <input name="designation" value={form.designation} onChange={handleChange} placeholder="Designation" />
+      <textarea name="about" value={form.about} onChange={handleChange} placeholder="About" />
 
-      <input
-        name="ownerGithubProfileURL"
-        value={form.ownerGithubProfileURL}
-        onChange={handleChange}
-        placeholder="GitHub URL"
-      />
-      <input
-        name="ownerLinkedinProfileURL"
-        value={form.ownerLinkedinProfileURL}
-        onChange={handleChange}
-        placeholder="LinkedIn URL"
-      />
-      <input
-        name="ownerEmailAddress"
-        value={form.ownerEmailAddress}
-        onChange={handleChange}
-        placeholder="Email"
-      />
+      <input name="ownerGithubProfileURL" value={form.ownerGithubProfileURL} onChange={handleChange} placeholder="GitHub URL" />
+      <input name="ownerLinkedinProfileURL" value={form.ownerLinkedinProfileURL} onChange={handleChange} placeholder="LinkedIn URL" />
+      <input name="ownerEmailAddress" value={form.ownerEmailAddress} onChange={handleChange} placeholder="Email" />
 
-      <button
-        onClick={handleSubmit}
-        className="bg-black text-white px-4 py-2 rounded"
-      >
+      <button onClick={handleSubmit} className="bg-black text-white px-4 py-2 rounded">
         Save
       </button>
     </div>
