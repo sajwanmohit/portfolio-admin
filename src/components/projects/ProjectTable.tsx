@@ -9,7 +9,7 @@ import {
 import ConfirmModalButton from "../modals/ConfirmModalButton";
 import { apiToast } from "../../utils/apiToast";
 
-export default function ProjectTable() {
+export default function ProjectTable(reloadKey: any) {
   const [editingId, setEditingId] = useState<number | null>(null);
   const [editData, setEditData] = useState<Partial<Project>>({});
   const [deleteId, setDeleteId] = useState<number | null>(null);
@@ -23,7 +23,7 @@ export default function ProjectTable() {
 
   useEffect(() => {
     fetchProjects();
-  }, [page, debouncedSearch]);
+  }, [reloadKey, page, debouncedSearch]);
 
   const startEdit = (projects: Project) => {
     setEditingId(projects.id);
