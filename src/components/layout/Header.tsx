@@ -9,10 +9,10 @@ function Header() {
 
   return (
     <>
-      <div className="h-14 bg-white border-b flex items-center justify-end px-6">
+      <div className="flex h-14 shrink-0 items-center justify-end border-b bg-white px-3 sm:px-6">
         <button
           onClick={() => setOpen(true)}
-          className="px-4 py-2 text-sm bg-red-500 text-white rounded hover:bg-red-600"
+          className="rounded bg-red-500 px-4 py-2 text-sm text-white hover:bg-red-600"
         >
           Logout
         </button>

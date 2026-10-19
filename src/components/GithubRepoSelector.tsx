@@ -23,11 +23,13 @@ export default function GithubRepoSelector({
           return (
             <div
               key={repo.id}
-              className="border p-3 rounded flex justify-between"
+              className="flex items-start justify-between gap-3 rounded border p-3"
             >
-              <div>
+              <div className="min-w-0 flex-1">
                 <p className="font-medium">{repo.name}</p>
-                <p className="text-sm text-gray-500">{repo.description}</p>
+                <p className="break-words text-sm text-gray-500">
+                  {repo.description}
+                </p>
               </div>
 
               <button
@@ -41,7 +43,7 @@ export default function GithubRepoSelector({
                     isSelected: true,
                   });
                 }}
-                className={`px-3 py-1 rounded text-white ${
+                className={`shrink-0 rounded px-3 py-1 text-white ${
                   isAdded
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-green-500"

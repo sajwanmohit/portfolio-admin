@@ -7,10 +7,12 @@ function Sidebar() {
     }`;
 
   return (
-    <aside className="w-64 bg-white border-r p-4">
-      <h2 className="text-xl font-bold mb-6">Portfolio Admin</h2>
+    <aside className="w-full shrink-0 border-b bg-white p-3 sm:p-4 lg:w-64 lg:border-b-0 lg:border-r">
+      <h2 className="mb-3 text-lg font-bold sm:text-xl lg:mb-6">
+        Portfolio Admin
+      </h2>
 
-      <nav className="space-y-2">
+      <nav className="flex flex-wrap gap-1 lg:flex-col lg:gap-0 lg:space-y-2">
         <NavLink to="/admin/profile" className={linkClass}>
           Profile
         </NavLink>
