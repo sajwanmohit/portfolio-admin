@@ -65,7 +65,7 @@ export default function ContactTable() {
 
       {/* TABLE */}
       <div className="overflow-x-auto bg-white shadow rounded-xl">
-        <table className="w-full text-sm">
+        <table className="w-full min-w-[700px] text-sm">
           <thead className="bg-gray-100 text-gray-600 text-xs uppercase">
             <tr>
               <th className="p-3 text-left">Name</th>
@@ -151,9 +151,11 @@ export default function ContactTable() {
 
       {selectedMessage && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-xl max-w-lg w-full">
+          <div className="m-4 max-h-[calc(100vh-2rem)] w-[calc(100%-2rem)] max-w-lg overflow-y-auto rounded-xl bg-white p-4 sm:m-6 sm:p-6">
             <h2 className="text-lg font-semibold mb-2">Message</h2>
-            <p className="text-sm whitespace-pre-wrap">{selectedMessage}</p>
+            <p className="break-words text-sm whitespace-pre-wrap">
+              {selectedMessage}
+            </p>
 
             <button
               onClick={() => setSelectedMessage(null)}
