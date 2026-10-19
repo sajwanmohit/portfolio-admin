@@ -95,7 +95,7 @@ export default function ProjectTable(reloadKey: any) {
   }
 
   return (
-    <div className="p-4">
+    <div className="p-3 sm:p-4">
       <h2 className="text-xl font-semibold mb-4">Projects</h2>
 
       {/* 🔍 SEARCH BAR */}
@@ -116,7 +116,7 @@ export default function ProjectTable(reloadKey: any) {
 
       {/* TABLE VIEW (md and above) */}
       <div className="hidden md:block overflow-x-auto bg-white shadow rounded-xl">
-        <table className="w-full text-sm">
+        <table className="w-full min-w-[680px] text-sm">
           <thead className="bg-gray-100 text-gray-600 uppercase text-xs">
             <tr>
               <th className="p-3 text-left">Title</th>
@@ -275,9 +275,9 @@ export default function ProjectTable(reloadKey: any) {
               </>
             ) : (
               <>
-                <p className="font-semibold">{p.title}</p>
-                <p className="text-sm text-gray-600">{p.description}</p>
-                <p className="text-xs text-gray-500 mt-1">{p.techStack}</p>
+                <p className="break-words font-semibold">{p.title}</p>
+                <p className="break-words text-sm text-gray-600">{p.description}</p>
+                <p className="mt-1 break-words text-xs text-gray-500">{p.techStack}</p>
 
                 <div className="flex gap-2 mt-3">
                   <button
