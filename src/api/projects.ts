@@ -1,5 +1,5 @@
 import api from "./axios";
-import type { Project } from "../types/project";
+import type { Project, ProjectInput } from "../types/project";
 
 export const getProjects = async (page=0,size=5, search = "") => {
   const res = await api.get("/public/projects", {
@@ -8,7 +8,7 @@ export const getProjects = async (page=0,size=5, search = "") => {
   return res.data;
 };
 
-export const createProject = async (data: Project) => {
+export const createProject = async (data: ProjectInput) => {
   return api.post("/admin/projects", data);
 };
 
