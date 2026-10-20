@@ -181,10 +181,20 @@ export default function ProjectTable(reloadKey: any) {
                     type="checkbox"
                     checked={p.isSelected || false}
                     onChange={async () => {
-                      await updateProjects(p.id!, {
-                        isSelected: !p.isSelected,
-                      });
-                      fetchProjects();
+                      const res = await apiToast(
+                        updateProjects(p.id, {
+                          ...p,
+                          isSelected: !p.isSelected,
+                        }),
+                        {
+                          loading: "Updating project selection...",
+                          success: "Project selection updated",
+                          error: "Failed to update project selection",
+                        },
+                      );
+                      if (res) {
+                        fetchProjects();
+                      }
                     }}
                   />
                 </td>
